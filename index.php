@@ -35,7 +35,7 @@ if (isset($_POST['add'])) {
             $imageUrl
         );
 
-        $_SESSION['message'] = 'Successfully create book';
+        $session->setSession('message', 'Successfully create book');
     } catch (Exception $e) {
         $data->setError($e->getMessage());
     }
