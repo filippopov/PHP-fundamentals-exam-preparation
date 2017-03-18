@@ -9,16 +9,29 @@
 namespace Services\Books;
 
 
+use Data\BookEditViewData;
+use Data\BookViewData;
 use Data\Genre;
+use Data\IndexViewData;
 
 interface BookServiceInterface
 {
-    public function addBook($isbn, $author, $titles, $genreId, $language, $releasedOn, $comment, $imageUrl);
+    public function addBook($isbn, $author, $titles, $genreId, $language, $releasedOn, $comment = null, $imageUrl = null);
 
-    /** @return Genre[]| \Generator */
-    public function getAllGenres();
+    /** @return IndexViewData */
+    public function getIndexViewData();
 
-    public function editBook($id, $author, $titles, $genreId, $language, $comment = null, $imageUrl = null);
+    /**
+     * @return BookEditViewData
+     */
+    public function getEditBookViewData($id);
+
+    public function editBook($id, $isbn, $author, $titles, $genreId, $language, $releasedOn, $comment = null, $imageUrl = null);
 
     public function deleteId($id);
+
+    /**
+     * @return BookViewData[]|\Generator
+     * */
+    public function findAll();
 }
